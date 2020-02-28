@@ -27,8 +27,47 @@ let getData = () => {
                 getData();
             })
 
+            let updateForm = document.createElement("form");
+            updateForm.setAttribute("onSubmit", "updateData(event)");
+            let updateTextField = document.createElement("input");
+            updateTextField.setAttribute("type", "hidden");
+            updateTextField.setAttribute("name", "text");
+            let updateSubmitButton = document.createElement("input");
+            updateSubmitButton.value = "Submit update";
+            updateSubmitButton.setAttribute("type", "hidden");
+            let modalDiv = document.createElement("div");
+            modalDiv.setAttribute("class","modal fade");
+            modalDiv.setAttribute("id","modalDiv");
+            let modalInnerDiv = document.createElement("div");
+            modalInnerDiv.setAttribute("class","modal-content");
+            
+            let modalBody = document.createElement("div");
+            modalBody.setAttribute("class","modal-body");
+
+            let modalDialog = document.createElement("div");
+            modalDialog.setAttribute("class","modal-dialog");
+
+
+            updateForm.appendChild(updateTextField);
+            updateForm.appendChild(updateSubmitButton);
+            modalDialog.appendChild(modalBody);
+            modalBody.append(updateForm);
+            modalInnerDiv.appendChild(modalDialog);
+            modalDiv.appendChild(modalInnerDiv);
+            let updateButton = document.createElement("button");
+            updateButton.innerText = "Update";
+            updateButton.className = "btn btn-info";
+            updateButton.setAttribute("data-toggle","modal");
+            updateButton.setAttribute("data-target","#modalDiv");
+            updateButton.addEventListener("click", () => {
+                updateTextField.setAttribute("type", "text");
+                updateSubmitButton.setAttribute("type", "submit");
+            })
+            
             tBody.appendChild(tRow);
             functionalityTh.appendChild(deleteButton);
+            functionalityTh.appendChild(updateButton);
+            functionalityTh.appendChild(modalDiv);
             tRow.appendChild(newTh);
             tRow.appendChild(priceTh);
             tRow.appendChild(itemsTh);
