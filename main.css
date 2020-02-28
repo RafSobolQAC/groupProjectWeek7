@@ -11,3 +11,11 @@
       vertical-align: middle;
     }
   }
+
+#create-modal input {
+    max-width: 2em;
+}
+
+.table-responsive {
+    max-height:500px;
+}
