@@ -1,5 +1,12 @@
 let createOrder = () => {
 
+    let newOrder = new XMLHttpRequest();
+    newOrder.open("POST", "http://localhost:8081/order");
+    let orderId = 0;
+    newOrder.onload = (() => {
+        orderId = JSON.parse(newOrder.response)["id"];
+    })
+    newOrder.send();
 
     let requestItems = new XMLHttpRequest();
     requestItems.open("GET", "http://localhost:8081/item/all");
@@ -49,12 +56,24 @@ let createOrder = () => {
             plusButton.addEventListener("click", () => {
                 numberInQuantity.value = (parseInt(numberInQuantity.value) + 1);
                 total.innerText = "£" + (parseFloat(total.innerText.substring(1)) + parseFloat(priceTd.innerText.substring(1)));
+
+                let add = new XMLHttpRequest();
+                
+                add.open("POST", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
+                add.setRequestHeader("Content-Type", "application/json");
+                add.send();
             })
 
             minusButton.addEventListener("click", () => {
                 if (numberInQuantity.value >= 1) {
                     numberInQuantity.value = (parseInt(numberInQuantity.value) - 1);
                     total.innerText = "£" + (parseFloat(total.innerText.substring(1)) - parseFloat(priceTd.innerText.substring(1)));
+
+                let add = new XMLHttpRequest();
+                
+                add.open("DELETE", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
+                    add.setRequestHeader("Content-Type", "application/json");
+                add.send();
 
                 }
             })
@@ -96,7 +115,7 @@ let createOrder = () => {
                     // items["id"] = row.cells[0].innerText;
                     let innerItems = {};
                     innerItems["id"] = row.cells[0].innerText;
-                    innerItems["imageUrl"] = row.cells[1].getElementsByClassName("img-fluid")[0].imageUrl;
+                    innerItems["imageUrl"] = row.cells[1].getElementsByClassName("img-fluid")[0].src;
                     innerItems["itemName"] = row.cells[2].innerText;
                     innerItems["price"] = parseFloat(row.cells[3].innerText.substring(1));
                     items.push(innerItems);
@@ -107,6 +126,7 @@ let createOrder = () => {
         }
         order["items"] = items;
         order["purchased"] = true;
+        console.log(order);
         requestPostItems.setRequestHeader("Content-Type", "application/json");
         requestPostItems.onload = getData();
         requestPostItems.send(JSON.stringify(order));
@@ -120,13 +140,11 @@ let getData = () => {
     let orderList = document.getElementById("table-orders");
     request.open("GET", "http://localhost:8081/order/all");
     let tBody = orderList.getElementsByClassName("tbody-dark")[0];
-
-    tBody.innerHTML = "";
     request.onload = () => {
+        tBody.innerHTML = "";
         for (let order of JSON.parse(request.response)) {
             let tRow = document.createElement("tr");
             tRow.setAttribute("id", "order " + order["id"]);
-            console.log(order);
             let newTh = document.createElement("th");
             newTh.setAttribute("scope", "row");
             newTh.innerText = order["id"];
@@ -137,10 +155,17 @@ let getData = () => {
             let itemView = document.createElement("button");
             itemView.innerText = "View";
             itemView.className = "btn btn-info";
-            itemView.addEventListener("click", () => {
-                viewItems(order["id"]);
-            })
 
+            itemView.addEventListener("click", () => {
+                let getRequest = new XMLHttpRequest();
+                getRequest.open("GET", "http://localhost:8081/order/" + order["id"]);
+                getRequest.onload = () => {
+                    console.log(JSON.parse(getRequest.response));
+                }
+                getRequest.send();
+
+            })
+            itemsTh.appendChild(itemView);
 
             let functionalityTh = document.createElement("th");
 
@@ -204,8 +229,6 @@ let getData = () => {
     request.send();
 
 }
-
-
 
 
 let button = document.getElementById("create-button");
