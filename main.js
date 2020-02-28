@@ -1,5 +1,6 @@
 let createOrder = () => {
-    console.log("Test");
+
+
     let requestItems = new XMLHttpRequest();
     requestItems.open("GET", "http://localhost:8081/item/all");
     let modal = document.getElementById("create-modal");
@@ -9,13 +10,13 @@ let createOrder = () => {
             let tRow = document.createElement("tr");
 
             let idTh = document.createElement("th");
-            idTh.setAttribute("scope","row");
+            idTh.setAttribute("scope", "row");
             idTh.innerText = item["id"];
             let imageTd = document.createElement("td");
             let imageInTd = document.createElement("img");
-            imageInTd.setAttribute("src",item["imageUrl"]);
-            imageInTd.setAttribute("class","img-fluid img-thumbnail");
-            imageInTd.setAttribute("alt",item["name"]);
+            imageInTd.setAttribute("src", item["imageUrl"]);
+            imageInTd.setAttribute("class", "img-fluid img-thumbnail");
+            imageInTd.setAttribute("alt", item["name"]);
             imageTd.appendChild(imageInTd);
 
 
@@ -25,34 +26,35 @@ let createOrder = () => {
             let addTd = document.createElement("td");
 
             nameTd.innerText = item["name"];
-            priceTd.innerText = "£"+item["price"];
-            
+            priceTd.innerText = "£" + item["price"];
+
             let numberInQuantity = document.createElement("input");
-            numberInQuantity.setAttribute("type","number");
-            numberInQuantity.setAttribute("id","quant");
-            numberInQuantity.setAttribute("name","quantity");
-            numberInQuantity.setAttribute("size",1);
-            numberInQuantity.value=0;
+            numberInQuantity.setAttribute("type", "number");
+            // numberInQuantity.setAttribute("id","quant");
+            numberInQuantity.setAttribute("name", "quantity");
+            numberInQuantity.setAttribute("class", "quant");
+            numberInQuantity.setAttribute("size", 1);
+            numberInQuantity.value = 0;
 
             quantityTd.appendChild(numberInQuantity);
-            
+
             let plusButton = document.createElement("button");
             let minusButton = document.createElement("button");
 
             plusButton.innerText = "+";
             minusButton.innerText = "-";
-            plusButton.setAttribute("class","btn btn-info");
-            minusButton.setAttribute("class","btn btn-danger");
+            plusButton.setAttribute("class", "btn btn-info");
+            minusButton.setAttribute("class", "btn btn-danger");
 
             plusButton.addEventListener("click", () => {
-                numberInQuantity.value = (parseInt(numberInQuantity.value)+1);
-                total.innerText = "£"+(parseFloat(total.innerText.substring(1))+parseFloat(priceTd.innerText.substring(1)));
+                numberInQuantity.value = (parseInt(numberInQuantity.value) + 1);
+                total.innerText = "£" + (parseFloat(total.innerText.substring(1)) + parseFloat(priceTd.innerText.substring(1)));
             })
 
             minusButton.addEventListener("click", () => {
                 if (numberInQuantity.value >= 1) {
-                    numberInQuantity.value = (parseInt(numberInQuantity.value)-1);
-                    total.innerText = "£"+(parseFloat(total.innerText.substring(1))-parseFloat(priceTd.innerText.substring(1)));
+                    numberInQuantity.value = (parseInt(numberInQuantity.value) - 1);
+                    total.innerText = "£" + (parseFloat(total.innerText.substring(1)) - parseFloat(priceTd.innerText.substring(1)));
 
                 }
             })
@@ -74,23 +76,43 @@ let createOrder = () => {
     let total = document.createElement("p");
     total.innerText = "£0.00";
 
-    let requestPostItems = new XMLHttpRequest();
-    requestPostItems.open("POST","http://localhost:8081/order");
 
     let createButton = document.createElement("button");
-    createButton.setAttribute("class","btn btn-info");
+    createButton.setAttribute("class", "btn btn-info");
     createButton.innerText = "Create!";
     tBody.parentNode.parentNode.appendChild(total);
     tBody.parentNode.parentNode.appendChild(createButton);
 
     createButton.addEventListener("click", () => {
-        
+        let requestPostItems = new XMLHttpRequest();
+        requestPostItems.open("POST", "http://localhost:8081/order");
+        let order = {};
+        order["id"] = 1;
+        let items = [];
+        for (let i = 0, row; row = tBody.rows[i]; i++) {
+            let quant = row.cells[4].getElementsByClassName("quant")[0].value;
+            if (quant >= 1) {
+                for (let j = 0; j < quant; j++) {
+                    // items["id"] = row.cells[0].innerText;
+                    let innerItems = {};
+                    innerItems["id"] = row.cells[0].innerText;
+                    innerItems["imageUrl"] = row.cells[1].getElementsByClassName("img-fluid")[0].imageUrl;
+                    innerItems["itemName"] = row.cells[2].innerText;
+                    innerItems["price"] = parseFloat(row.cells[3].innerText.substring(1));
+                    items.push(innerItems);
+                }
+
+                // for (let j = 0; j < row.cells[4].; 
+            }
+        }
+        order["items"] = items;
+        order["purchased"] = true;
+        requestPostItems.setRequestHeader("Content-Type", "application/json");
+        requestPostItems.onload = getData();
+        requestPostItems.send(JSON.stringify(order));
     })
 }
 
-let createThings = () => {
-
-}
 
 let getData = () => {
     if (event) event.preventDefault();
