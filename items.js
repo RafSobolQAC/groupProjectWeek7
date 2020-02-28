@@ -1,29 +1,30 @@
-let getData = () => {
+let getItems = () => {
     let request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:8081/note/");
+    request.open("GET", "http://34.89.15.54:8081/item/all");
     request.send();
     request.onload = () => {
-        let data = JSON.parse(request.response);
-        let list = document.getElementById("tasks");
-        list.innerText = "";
-        for(let task of data) {
-            let listItem = document.createElement("li");
-            let div = document.createElement("div");
-            let para = document.createElement("p");
-            para.innerText = task.text;
-            let button = document.createElement("button");
-            button.className = "btn btn-danger";
-            button.innerText = "Delete"
-            button.addEventListener("click", () => {
-                deleteData(task.id);
-            })
-            div.appendChild(para);
-            div.appendChild(button);
-            listItem.appendChild(div);
-            list.appendChild(listItem);
-        }
+      let data = JSON.parse(request.response);
+      let table = document.getElementById("item-table");
+      table.innerText = "";
+      for (let task of data) {
+        console.log(task);
+        // let tableItem = document.createElement("row");
+        // let para = document.createElement("p");
+        // para.innerText = task.text;
+        // let button = document.createElement("button");
+        // button.className = "btn btn-danger";
+        // button.innerText = "Delete"
+        // button.addEventListener("click", () => {
+        //   deleteData(task.id);
+        // })
+        // div.appendChild(para);
+        // div.appendChild(button);
+        // tableItem.appendChild(div);
+        // table.appendChild(tableItem);
+      }
     }
 }
+getItems();
 
 let itemOrder = () => {
     console.log("Test");

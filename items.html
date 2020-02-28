@@ -3,221 +3,228 @@
 <html>
 
 <head>
-    <meta lang="en" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/main.css" />
+  <meta lang="en" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/main.css" />
 
-    <title>
-        Items
-    </title>
+  <title>
+    Items
+  </title>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/orders.html">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/items.html">Items</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Items
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/orders.html">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/items.html">Items</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Items
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="modal" id="createordermodal">
+    </div>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="items.html">Items <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html">Orders <span class="sr-only">(current)</span></a>
+          </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav> -->
 
     <div class="container">
-    <div class="modal" id="createordermodal">
-      </div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-  
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                          <a class="nav-link" href="items.html">Items <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                          <a class="nav-link" href="orders.html">Orders <span class="sr-only">(current)</span></a>
-                  </li>
-  
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-          </div>
-      </nav>
-  
-      <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <table id="item-table" class="table table-image">
-                    <thead>
-                        <tr>
-                            <th scope="col">Item No.</th>
-                            <th scope="col"></th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td class="w-25">
-                                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg"
-                                    class="img-fluid img-thumbnail" alt="Sheep">
-                            </td>
-                            <td>Item</td>
-                            <td>.</td>
-                            <td><button>Delete</button></td>
-                            <td><button>Edit</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td class="w-25">
-                                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg"
-                                    class="img-fluid img-thumbnail" alt="Sheep">
-                            </td>
-                            <td>Item</td>
-                            <td>.</td>
-                            <td><button id="itemAdd" class="add-button">Delete</button></td>
-                            <td><button class="edit-button">Edit</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <form onsubmit="submitForm(event)">
-                    <h3>Enter Item Name: </h3>
-                    <input type="text" name="name">
-                    <h3>Enter Image URL:</h3>
-                    <input type="text" name="imageUrl">
-                    <h3>Enter Item Price:</h3>
-                    <input type="number" step="0.01" name="price">
-                    <input type="submit">
-                </form>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <table id="item-table" class="table table-image">
+            <thead>
+              <tr>
+                <th scope="col">Item No.</th>
+                <th scope="col"></th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td class="w-25">
+                  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg"
+                    class="img-fluid img-thumbnail" alt="Sheep">
+                </td>
+                <td>Item</td>
+                <td>.</td>
+                <td><button>Delete</button></td>
+                <td><button>Edit</button></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td class="w-25">
+                  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg"
+                    class="img-fluid img-thumbnail" alt="Sheep">
+                </td>
+                <td>Item</td>
+                <td>.</td>
+                <td><button id="itemAdd" class="add-button">Delete</button></td>
+                <td><button class="edit-button">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <form onsubmit="submitForm(event)">
+            <h3>Enter Item Name: </h3>
+            <input type="text" name="name" id="item-name">
+            <h3>Enter Image URL:</h3>
+            <input type="text" name="imageUrl" id="image-url">
+            <h3>Enter Item Price:</h3>
+            <input type="number" step="0.01" name="price" id="price">
+            <input type="submit">
+          </form>
         </div>
+      </div>
     </div>
 
     <script> function myFunction() {
-            var button = document.getElementById("create");
-            var table = document.getElementById("item-table");
-            var row = table.insertRow();
-        }</script>
+        var button = document.getElementById("create");
+        var table = document.getElementById("item-table");
+        var row = table.insertRow();
+      }</script>
 
     <script>
-        var qtyTotal = 0;
-        var priceTotal = 0;
+      var qtyTotal = 0;
+      var priceTotal = 0;
 
-        let objFromForm = (event) => {
-            let form = event.target;
-            let obj = {};
-            for (let input of form) {
-                if (input.name) {
-                    obj[input.name] = input.value;
-                }
-            }
-            return obj;
+      let objFromForm = (event) => {
+        let form = event.target;
+        let obj = {};
+        for (let input of form) {
+          if (input.name) {
+            obj[input.name] = input.value;
+          }
         }
-        function submitForm(event) {
-            event.preventDefault();
-            let details = objFromForm(event);
-            console.log(JSON.stringify(details))
+        return obj;
+      }
+      function submitForm(event) {
+        event.preventDefault();
+        let details = objFromForm(event);
+        console.log(JSON.stringify(details))
 
-            var price = document.getElementById("price").value;
-            priceTotal = priceTotal + parseInt(price);
-            document.getElementById("priceTotals").innerHTML = priceTotal;
+        var price = document.getElementById("price").value;
+        // priceTotal = priceTotal + parseInt(price);
+        // document.getElementById("priceTotals").innerHTML = priceTotal;
 
-            var table = document.getElementById("item-table");
-            var row = table.insertRow();
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            cell2.innerHTML = name;
-            cell3.innerHTML = qty;
-            cell4.innerHTML = price;
+        var table = document.getElementById("item-table");
+        var row = table.insertRow(-1);
+        var cell2 = row.insertCell();
+        var cell3 = row.insertCell();
+        var cell4 = row.insertCell();
+        cell2.innerHTML = document.getElementById("name").value;
+        cell3.innerHTML = "1";
+        cell4.innerHTML = "1";
+        let request = new XMLHttpRequest();
+        request.open("POST","http://34.89.15.54:8081/item");
+        let item = {};
+        item["imageUrl"] = document.getElementById("image-url").value;
+        item["name"] = document.getElementById("name").value;
+        item["price"] = document.getElementById("price").value;
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(item);
 
-
-        }
+      }
 
     </script>
     <script>
-        let getData = () => {
-            let request = new XMLHttpRequest();
-            request.open("GET", "http://34.89.15.54:8081/swagger-ui.html#/");
-            request.send();
-            request.onload = () => {
-                let data = JSON.parse(request.response);
-                let table = document.getElementById("item-table");
-                table.innerText = "";
-                for(let task of data) {
-                    let tableItem = document.createElement("row");
-                    let para = document.createElement("p");
-                    para.innerText = task.text;
-                    let button = document.createElement("button");
-                    button.className = "btn btn-danger";
-                    button.innerText = "Delete"
-                    button.addEventListener("click", () => {
-                        deleteData(task.id);
-                    })
-                    div.appendChild(para);
-                    div.appendChild(button);
-                    tableItem.appendChild(div);
-                    table.appendChild(tableItem);
-                }
-            }
+      let getItemss = () => {
+        let request = new XMLHttpRequest();
+        request.open("GET", "http://34.89.15.54:8081/swagger-ui.html#/");
+        request.send();
+        request.onload = () => {
+          let data = JSON.parse(request.response);
+          let table = document.getElementById("item-table");
+          table.innerText = "";
+          for (let task of data) {
+            let tableItem = document.createElement("row");
+            let para = document.createElement("p");
+            para.innerText = task.text;
+            let button = document.createElement("button");
+            button.className = "btn btn-danger";
+            button.innerText = "Delete"
+            button.addEventListener("click", () => {
+              deleteData(task.id);
+            })
+            div.appendChild(para);
+            div.appendChild(button);
+            tableItem.appendChild(div);
+            table.appendChild(tableItem);
+          }
         }
+      }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"></script>
     <script src="/items.js"></script>
 
 </body>

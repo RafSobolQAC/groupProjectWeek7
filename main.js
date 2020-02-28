@@ -1,7 +1,7 @@
 let createOrder = () => {
 
     let newOrder = new XMLHttpRequest();
-    newOrder.open("POST", "http://34.89.15.54/:8081/order");
+    newOrder.open("POST", "http://34.89.15.54:8081/order");
     let orderId = 0;
     newOrder.onload = (() => {
         orderId = JSON.parse(newOrder.response)["id"];
