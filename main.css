@@ -6,7 +6,7 @@
     background-attachment: fixed;
     background-size: cover;
   }
-   .container {
+   .contain {
     position: relative;
     text-align: center;
     color:  darkslateblue;
@@ -17,7 +17,9 @@
     
     }
    
-  
+  .quant {
+      max-width: 2em;
+  }
   .topnav {
     overflow: hidden;
     background-color:moccasin;

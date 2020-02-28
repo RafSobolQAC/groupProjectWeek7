@@ -1,7 +1,7 @@
 let createOrder = () => {
 
     let newOrder = new XMLHttpRequest();
-    newOrder.open("POST", "http://localhost:8081/order");
+    newOrder.open("POST", "http://34.89.15.54/:8081/order");
     let orderId = 0;
     newOrder.onload = (() => {
         orderId = JSON.parse(newOrder.response)["id"];
@@ -9,7 +9,7 @@ let createOrder = () => {
     newOrder.send();
 
     let requestItems = new XMLHttpRequest();
-    requestItems.open("GET", "http://localhost:8081/item/all");
+    requestItems.open("GET", "http://34.89.15.54:8081/item/all");
     let modal = document.getElementById("create-modal");
     let tBody = document.getElementById("create-tbody");
     requestItems.onload = () => {
@@ -59,7 +59,7 @@ let createOrder = () => {
 
                 let add = new XMLHttpRequest();
 
-                add.open("POST", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
+                add.open("POST", "http://34.89.15.54:8081/order/" + orderId + "/item/" + idTh.innerText);
                 add.setRequestHeader("Content-Type", "application/json");
                 add.send();
                 getData();
@@ -72,7 +72,7 @@ let createOrder = () => {
 
                     let add = new XMLHttpRequest();
 
-                    add.open("DELETE", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
+                    add.open("DELETE", "http://34.89.15.54:8081/order/" + orderId + "/item/" + idTh.innerText);
                     add.setRequestHeader("Content-Type", "application/json");
                     add.send();
                     getData();
@@ -116,7 +116,7 @@ let getData = () => {
     if (event) event.preventDefault();
     let request = new XMLHttpRequest();
     let orderList = document.getElementById("table-orders");
-    request.open("GET", "http://localhost:8081/order/all");
+    request.open("GET", "http://34.89.15.54:8081/order/all");
     let tBody = orderList.getElementsByClassName("tbody-dark")[0];
     request.onload = () => {
         tBody.innerHTML = "";
@@ -140,7 +140,7 @@ let getData = () => {
 
             itemView.addEventListener("click", () => {
                 let getRequest = new XMLHttpRequest();
-                getRequest.open("GET", "http://localhost:8081/order/" + order["id"]);
+                getRequest.open("GET", "http://34.89.15.54:8081/order/" + order["id"]);
                 getRequest.onload = () => {
                     console.log(JSON.parse(getRequest.response));
                 }
@@ -219,7 +219,7 @@ button.addEventListener("click", () => {
 
 let deleteData = (id) => {
     let request = new XMLHttpRequest();
-    request.open("DELETE", "http://localhost:8081/order/" + id);
+    request.open("DELETE", "http://34.89.15.54:8081/order/" + id);
     request.onload = () => {
         getData();
     }
