@@ -58,10 +58,11 @@ let createOrder = () => {
                 total.innerText = "£" + (parseFloat(total.innerText.substring(1)) + parseFloat(priceTd.innerText.substring(1)));
 
                 let add = new XMLHttpRequest();
-                
+
                 add.open("POST", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
                 add.setRequestHeader("Content-Type", "application/json");
                 add.send();
+                getData();
             })
 
             minusButton.addEventListener("click", () => {
@@ -69,12 +70,12 @@ let createOrder = () => {
                     numberInQuantity.value = (parseInt(numberInQuantity.value) - 1);
                     total.innerText = "£" + (parseFloat(total.innerText.substring(1)) - parseFloat(priceTd.innerText.substring(1)));
 
-                let add = new XMLHttpRequest();
-                
-                add.open("DELETE", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
-                    add.setRequestHeader("Content-Type", "application/json");
-                add.send();
+                    let add = new XMLHttpRequest();
 
+                    add.open("DELETE", "http://localhost:8081/order/" + orderId + "/item/" + idTh.innerText);
+                    add.setRequestHeader("Content-Type", "application/json");
+                    add.send();
+                    getData();
                 }
             })
 
@@ -88,6 +89,7 @@ let createOrder = () => {
             tRow.appendChild(quantityTd);
             tRow.appendChild(addTd);
             tBody.appendChild(tRow);
+            getData();
         }
     }
     requestItems.send();
@@ -97,39 +99,15 @@ let createOrder = () => {
 
 
     let createButton = document.createElement("button");
-    createButton.setAttribute("class", "btn btn-info");
+    createButton.setAttribute("class", "btn btn-info btn-create");
     createButton.innerText = "Create!";
-    tBody.parentNode.parentNode.appendChild(total);
-    tBody.parentNode.parentNode.appendChild(createButton);
-
+    if (tBody.parentNode.parentNode.getElementsByClassName("btn-create")[0] == undefined) {
+        tBody.parentNode.parentNode.appendChild(total);
+        tBody.parentNode.parentNode.appendChild(createButton);
+    }
+    createButton.setAttribute("data-dismiss", "modal");
     createButton.addEventListener("click", () => {
-        let requestPostItems = new XMLHttpRequest();
-        requestPostItems.open("POST", "http://localhost:8081/order");
-        let order = {};
-        order["id"] = 1;
-        let items = [];
-        for (let i = 0, row; row = tBody.rows[i]; i++) {
-            let quant = row.cells[4].getElementsByClassName("quant")[0].value;
-            if (quant >= 1) {
-                for (let j = 0; j < quant; j++) {
-                    // items["id"] = row.cells[0].innerText;
-                    let innerItems = {};
-                    innerItems["id"] = row.cells[0].innerText;
-                    innerItems["imageUrl"] = row.cells[1].getElementsByClassName("img-fluid")[0].src;
-                    innerItems["itemName"] = row.cells[2].innerText;
-                    innerItems["price"] = parseFloat(row.cells[3].innerText.substring(1));
-                    items.push(innerItems);
-                }
-
-                // for (let j = 0; j < row.cells[4].; 
-            }
-        }
-        order["items"] = items;
-        order["purchased"] = true;
-        console.log(order);
-        requestPostItems.setRequestHeader("Content-Type", "application/json");
-        requestPostItems.onload = getData();
-        requestPostItems.send(JSON.stringify(order));
+        getData();
     })
 }
 
@@ -149,7 +127,11 @@ let getData = () => {
             newTh.setAttribute("scope", "row");
             newTh.innerText = order["id"];
             let priceTh = document.createElement("th");
-            priceTh.innerText = "tester";
+            let price = 0.00;
+            for (let item of order["items"]) {
+                price += item["price"];
+            }
+            priceTh.innerText = "£"+price;
             let itemsTh = document.createElement("th");
 
             let itemView = document.createElement("button");
@@ -174,7 +156,6 @@ let getData = () => {
             deleteButton.className = "btn btn-danger";
             deleteButton.addEventListener("click", () => {
                 deleteData(order["id"]);
-                getData();
             })
 
             let updateForm = document.createElement("form");
@@ -239,7 +220,11 @@ button.addEventListener("click", () => {
 let deleteData = (id) => {
     let request = new XMLHttpRequest();
     request.open("DELETE", "http://localhost:8081/order/" + id);
+    request.onload = () => {
+        getData();
+    }
     request.send();
+
 }
 
 getData();
