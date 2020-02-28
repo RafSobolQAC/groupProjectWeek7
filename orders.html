@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -69,7 +70,7 @@
             </div>
         </div>
 
-        <table class="table">
+        <table class="table" id="table-orders">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Order</th>
@@ -78,11 +79,11 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody class="tbody-dark">
+                <tr class="body-tr">
                     <th scope="row">1</th>
                     <td>A lot</td>
-                    <td>View</td>
+                    <td><button class="btn btn-info">View</button></td>
                     <td><button class="btn btn-danger"></button></td>
                 </tr>
             </tbody>
